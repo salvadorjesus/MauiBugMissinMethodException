@@ -8,7 +8,8 @@ The repo features a mockup app that follows a structure that is common in normal
 
 There is a Service class that load a series of objects of a class defined in the model and serve them to the the viewModel.
 
-**Model** (excerpt):
+**Model** (excerpt) [City.cs](https://github.com/salvadorjesus/MauiBugMissingMethodException/blob/master/MauiBugMissingMethodException/Model/City.cs):
+
 ``` c#
     public class City
     {
@@ -22,7 +23,8 @@ There is a Service class that load a series of objects of a class defined in the
     }
 ```
 
-**ViewModel** (excerpt):
+**ViewModel** (excerpt) [BugPageViewModel.cs](https://github.com/salvadorjesus/MauiBugMissingMethodException/blob/master/MauiBugMissingMethodException/ViewModel/BugPageViewModel.cs):
+
 ``` c#
     public partial class BugPageViewModel : ObservableObject
     {
@@ -36,7 +38,8 @@ There is a Service class that load a series of objects of a class defined in the
 
 The view binds to properties exposed by the viewModel (that are references to model objects). In this case we have a List and a property.
 
-**View** (excerpt):
+**View** (excerpt) [BugPage.xaml](https://github.com/salvadorjesus/MauiBugMissingMethodException/blob/master/MauiBugMissingMethodException/View/BugPage.xaml):
+
 ``` XAML
 <!--Accesing the list-->
         <CarouselView ItemsSource="{Binding Cities}">
