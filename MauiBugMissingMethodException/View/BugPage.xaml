@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmoddel="clr-namespace:MauiBugMissingMethodException.ViewModel"
+             xmlns:model="clr-namespace:MauiBugMissingMethodException.Model"
+             x:DataType="viewmoddel:BugPageViewModel"
+             x:Class="MauiBugMissingMethodException.View.BugPage"
+             Title="BugPage">
+    <VerticalStackLayout>
+        <Label 
+            Text="My cities"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center"
+            FontSize="Large"/>
+        <Label  FontSize="Subtitle"
+            Text="This will work on debug. It will raise a Missing Method Exception on release."/>
+        
+        <!--The code in the carrousel will raise a No Such Method Exception.-->
+        <CarouselView IndicatorView="Indicator"
+                      ItemsSource="{Binding Cities}">
+            <CarouselView.ItemTemplate>
+                <DataTemplate x:DataType="model:City">
+                    <Frame  HasShadow="True"
+                            Margin="20,20,20,6"
+                            Padding="10">
+                        <VerticalStackLayout>
+                            <Label Text="{Binding CityName}"/>
+                            <Label Text="{Binding FriendsThere[0], StringFormat='My friend {0} lives there'}"/>
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+        <IndicatorView Grid.Row="1" 
+            x:Name="Indicator"
+            IndicatorSize="10.5"
+            VerticalOptions="End"
+            HorizontalOptions="Center"
+            Margin="5,11,5,15"
+            Count="{Binding Cities.Count}"/>
+
+        <!--Uncomment this code to get a different behavior. The page won’t load. It will not raise any exception.-->
+        <!--<Label FontSize="Subtitle"
+            Text="This will work on debug. The page just won't load on release."/>
+        <Label Text="{Binding City.CityName}"/>
+        <Label Text="{Binding City.FriendsThere[0], StringFormat='My friend {0} lives there'}"/>-->
+
+    </VerticalStackLayout>
+</ContentPage>
